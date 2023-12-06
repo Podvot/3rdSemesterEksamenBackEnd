@@ -50,7 +50,6 @@ public class IngredientController : ControllerBase
         Ingredient newIngredient;
 
             newIngredient = _ingredientService.CreateIngredient(ingredient);
-        
        
         _logger.Log(LogLevel.Information, "CreateIngredient called, returning new ingredient");
         return CreatedAtAction(nameof(GetIngredient), new { id = newIngredient.Id }, newIngredient);

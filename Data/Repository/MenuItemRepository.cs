@@ -55,10 +55,10 @@ public class MenuItemRepository : IMenuItemRepository
         _context.SaveChanges();
     }
     
-    public void AddRecipe(Guid menuItemId, Guid recipeId)
+    public void AddRecipe(Guid menuItemId, Recipe recipe)
     {
         var menuItem = GetMenuItem(menuItemId);
-        menuItem.AddedRecipe = recipeId;
+        menuItem.AddedRecipe.Add(recipe);
         _context.SaveChanges();
     }
 }

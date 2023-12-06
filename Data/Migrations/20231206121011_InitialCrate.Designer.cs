@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(KaffeshopContext))]
-    [Migration("20231205112342_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231206121011_InitialCrate")]
+    partial class InitialCrate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,6 +87,8 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MenuItemId");
+
                     b.ToTable("Recipes");
                 });
 
@@ -95,6 +97,18 @@ namespace Data.Migrations
                     b.HasOne("Models.Recipe", null)
                         .WithMany("AddedIngredients")
                         .HasForeignKey("RecipeId");
+                });
+
+            modelBuilder.Entity("Models.Recipe", b =>
+                {
+                    b.HasOne("Models.MenuItem", null)
+                        .WithMany("AddedRecipe")
+                        .HasForeignKey("MenuItemId");
+                });
+
+            modelBuilder.Entity("Models.MenuItem", b =>
+                {
+                    b.Navigation("AddedRecipe");
                 });
 
             modelBuilder.Entity("Models.Recipe", b =>

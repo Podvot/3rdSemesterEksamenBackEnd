@@ -47,7 +47,7 @@ public class MenuItemController : Controller
     }
 
     [HttpPut("{menuItemId}/AddRecipe")]
-    public IActionResult AddRecipe(Guid menuItemId, [FromBody] Guid recipe)
+    public IActionResult AddRecipe(Guid menuItemId, [FromBody] Recipe recipe)
     {
         if (!_menuItemService.MenuItemExists(menuItemId))
         {

@@ -37,9 +37,9 @@ public class MenuItemService : IMenuItemService
         return _menuItemRepository.UpdateMenuItem(id, menuItem);
     }
 
-    public void AddRecipe(Guid menuItemId, Guid recipeId)
+    public void AddRecipe(Guid menuItemId, Recipe recipe)
     {
-        _menuItemRepository.AddRecipe(menuItemId, recipeId);
+        _menuItemRepository.AddRecipe(menuItemId, recipe);
     }
 
     public void DeleteMenuItem(Guid id)
