@@ -3,13 +3,15 @@ using Models;
 
 namespace Presentation;
 
-public class MappingProfile :  Profile
+public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<IngredientAvailabilityDto, Ingredient>();
-        CreateMap<Ingredient, IngredientAvailabilityDto>();
+        CreateMap<CreateRecipeDTO, Recipe>();
+        CreateMap<Recipe, CreateRecipeDTO>();
         CreateMap<CreateMenuItemDTO, MenuItem>();
         CreateMap<MenuItem, CreateMenuItemDTO>();
+        CreateMap<IngredientAvailabilityDto, Ingredient>();
+        CreateMap<Ingredient, IngredientAvailabilityDto>();
     }
 }

@@ -3,13 +3,15 @@ using Models;
 
 namespace Data;
 
-public class LibraryContext : DbContext
+public class KaffeshopContext : DbContext
 {
-    public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
+    public KaffeshopContext(DbContextOptions<KaffeshopContext> options) : base(options)
     {
         
     }
 
     public DbSet<Ingredient> Ingredients { get; set; } = null!;
     public DbSet<MenuItem> MenuItems { get; set; } = null!;
+    public DbSet<Recipe> Recipes { get; set; } = null!;
+    
 }

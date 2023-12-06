@@ -46,6 +46,18 @@ public class MenuItemController : Controller
         return CreatedAtAction(nameof(GetMenuItem), new { id = newMenuItem.Id }, newMenuItem);
     }
 
+    [HttpPut("{menuItemId}/AddRecipe")]
+    public IActionResult AddRecipe(Guid menuItemId, [FromBody] Guid recipe)
+    {
+        if (!_menuItemService.MenuItemExists(menuItemId))
+        {
+            return NotFound();
+        }
+
+        _menuItemService.AddRecipe(menuItemId, recipe);
+        return Ok();
+    }
+    
     [HttpPut("{id}")]
     public IActionResult UpdateMenuItem(Guid id, [FromBody] MenuItem menuItem)
     {
@@ -58,18 +70,6 @@ public class MenuItemController : Controller
         return Ok(updatedIngredient);
     }
     
-    [HttpPut("{menuItemId}/AddIngredient")]
-    public IActionResult AddIngredient(Guid menuItemId, [FromBody] Ingredient ingredient)
-    {
-        if (!_menuItemService.MenuItemExists(menuItemId))
-        {
-            return NotFound();
-        }
-
-        _menuItemService.AddIngredient(menuItemId, ingredient);
-        return Ok();
-    }
-
     [HttpDelete("{id}")]
     public IActionResult DeleteMenuItem(Guid id)
     {

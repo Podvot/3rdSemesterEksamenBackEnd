@@ -49,16 +49,8 @@ public class IngredientController : ControllerBase
     {
         Ingredient newIngredient;
 
-        try
-        {
             newIngredient = _ingredientService.CreateIngredient(ingredient);
-        }
-        catch (Exception e)
-        {
-            var message = "CreateIngredient called, but an exception was thrown";
-            _logger.Log(LogLevel.Error, message + ": {0}", e.Message);
-            return StatusCode(500, message);
-        }
+        
        
         _logger.Log(LogLevel.Information, "CreateIngredient called, returning new ingredient");
         return CreatedAtAction(nameof(GetIngredient), new { id = newIngredient.Id }, newIngredient);

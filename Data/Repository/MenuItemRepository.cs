@@ -5,9 +5,9 @@ namespace Data.Repository;
 
 public class MenuItemRepository : IMenuItemRepository
 {
-    private readonly LibraryContext _context;
+    private readonly KaffeshopContext _context;
     
-    public MenuItemRepository(LibraryContext context)
+    public MenuItemRepository(KaffeshopContext context)
     {
         _context = context;
     }
@@ -16,7 +16,6 @@ public class MenuItemRepository : IMenuItemRepository
     {
         return _context
             .MenuItems
-            .Include(x => x.AddedIngredients)
             .ToList();
     }
 
@@ -24,7 +23,6 @@ public class MenuItemRepository : IMenuItemRepository
     {
         return _context
                    .MenuItems
-                   .Include(x => x.AddedIngredients)
                    .FirstOrDefault(x => x.Id == id) 
                ?? throw new InvalidOperationException();
     }
@@ -48,24 +46,19 @@ public class MenuItemRepository : IMenuItemRepository
         _context.SaveChanges();
         return menuItemToUpdate;
     }
-
-    public void AddIngredient(Guid menuItemId, Ingredient ingredient)
-    {
-        var menuItem = GetMenuItem(menuItemId);
-        menuItem.AddedIngredients.Add(ingredient);
-        _context.SaveChanges();
-    }
     
     public void DeleteMenuItem(Guid id)
     {
         var menuItem = GetMenuItem(id);
-
-        foreach (var ingredient in menuItem.AddedIngredients)
-        {
-            ingredient.MenuItemId = null;
-        }
         
         _context.MenuItems.Remove(menuItem);
+        _context.SaveChanges();
+    }
+    
+    public void AddRecipe(Guid menuItemId, Guid recipeId)
+    {
+        var menuItem = GetMenuItem(menuItemId);
+        menuItem.AddedRecipe = recipeId;
         _context.SaveChanges();
     }
 }

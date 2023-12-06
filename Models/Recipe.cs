@@ -9,7 +9,7 @@ public class Recipe
     public Guid Id { get; set; }
     public string Name { get; set; }
     public bool Seasonal { get; set; }
+    public bool Available { get; set; }
     public IList<Ingredient> AddedIngredients { get; set; } = new List<Ingredient>();
-    public Guid? MenuItemId { get; set; }
 
 }

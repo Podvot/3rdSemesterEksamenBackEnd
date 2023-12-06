@@ -11,14 +11,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Migrations\LibraryContextModelSnapshot.cs" />
+      <Compile Remove="Migrations\KaffeshopContextModelSnapshot.cs" />
       <Compile Remove="Migrations\20230906081902_MenuItemRecordAdded.cs" />
       <Compile Remove="Migrations\20230906081902_MenuItemRecordAdded.Designer.cs" />
       <Compile Remove="Migrations\20230906070530_InitialCreate.Designer.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Migrations\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -29,6 +25,10 @@
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.10" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Migrations\" />
     </ItemGroup>
 
 </Project>

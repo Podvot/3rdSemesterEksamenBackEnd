@@ -4,9 +4,9 @@ namespace Data.Repository;
 
 public class IngredientRepository : IIngredientRepository
 {
-    private readonly LibraryContext _context;
+    private readonly KaffeshopContext _context;
 
-    public IngredientRepository(LibraryContext context)
+    public IngredientRepository(KaffeshopContext context)
     {
         _context = context;
     }
