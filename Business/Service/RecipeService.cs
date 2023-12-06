@@ -32,16 +32,6 @@ public class RecipeService : IRecipeService
         return _recipeRepository.RecipeExists(id);
     }
 
-    public Recipe? UpdateRecipe(Guid id, Recipe recipe)
-    {
-        return _recipeRepository.UpdateRecipe(id, recipe);
-    }
-    
-    public void AddIngredient(Guid recipeId, Ingredient ingredient)
-    {
-        _recipeRepository.AddIngredient(recipeId, ingredient);
-    }
-
     public void DeleteRecipe(Guid id)
     {
         _recipeRepository.DeleteRecipe(id);

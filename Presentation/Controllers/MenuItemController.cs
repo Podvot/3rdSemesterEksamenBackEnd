@@ -45,18 +45,6 @@ public class MenuItemController : Controller
         var newMenuItem = _menuItemService.CreateMenuItem(menuItem);
         return CreatedAtAction(nameof(GetMenuItem), new { id = newMenuItem.Id }, newMenuItem);
     }
-
-    [HttpPut("{menuItemId}/AddRecipe")]
-    public IActionResult AddRecipe(Guid menuItemId, [FromBody] Guid recipe)
-    {
-        if (!_menuItemService.MenuItemExists(menuItemId))
-        {
-            return NotFound();
-        }
-
-        _menuItemService.AddRecipe(menuItemId, recipe);
-        return Ok();
-    }
     
     [HttpPut("{id}")]
     public IActionResult UpdateMenuItem(Guid id, [FromBody] MenuItem menuItem)

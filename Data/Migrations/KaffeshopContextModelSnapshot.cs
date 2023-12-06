@@ -55,8 +55,8 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Price")
-                        .HasColumnType("int");
+                    b.Property<double?>("Price")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -84,19 +84,33 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MenuItemId");
+
                     b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("Models.Ingredient", b =>
                 {
                     b.HasOne("Models.Recipe", null)
-                        .WithMany("AddedIngredients")
+                        .WithMany("Ingredients")
                         .HasForeignKey("RecipeId");
                 });
 
             modelBuilder.Entity("Models.Recipe", b =>
                 {
-                    b.Navigation("AddedIngredients");
+                    b.HasOne("Models.MenuItem", null)
+                        .WithMany("Recipes")
+                        .HasForeignKey("MenuItemId");
+                });
+
+            modelBuilder.Entity("Models.MenuItem", b =>
+                {
+                    b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("Models.Recipe", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

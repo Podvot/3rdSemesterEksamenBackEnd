@@ -14,8 +14,8 @@ public class MenuItemRepository : IMenuItemRepository
     
     public IList<MenuItem> GetMenuItems()
     {
-        return _context
-            .MenuItems
+        return _context.MenuItems
+            .Include(x => x.Recipes)
             .ToList();
     }
 
@@ -55,10 +55,4 @@ public class MenuItemRepository : IMenuItemRepository
         _context.SaveChanges();
     }
     
-    public void AddRecipe(Guid menuItemId, Guid recipeId)
-    {
-        var menuItem = GetMenuItem(menuItemId);
-        menuItem.AddedRecipe = recipeId;
-        _context.SaveChanges();
-    }
 }

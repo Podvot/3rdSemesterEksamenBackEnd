@@ -1,9 +1,8 @@
 namespace Models;
 
-public class CreateRecipeDTO
+public class CreateIngredientDTO
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
-    public bool Seasonal { get; set; }
     public bool Available { get; set; }
 }

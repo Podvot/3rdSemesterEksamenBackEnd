@@ -47,30 +47,6 @@ public class RecipeController : Controller
         return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.Id }, newRecipe);
     }
 
-    [HttpPut("{id}")]
-    public IActionResult UpdateRecipe(Guid id, [FromBody] Recipe recipe)
-    {
-        if (!_recipeService.RecipeExists(id))
-        {
-            return NotFound();
-        }
-
-        var updatedIngredient = _recipeService.UpdateRecipe(id, recipe);
-        return Ok(updatedIngredient);
-    }
-
-    [HttpPut("{recipeId}/AddIngredient")]
-    public IActionResult AddIngredient(Guid recipeId, [FromBody] Ingredient ingredient)
-    {
-        if (!_recipeService.RecipeExists(recipeId))
-        {
-            return NotFound();
-        }
-
-        _recipeService.AddIngredient(recipeId, ingredient);
-        return Ok();
-    }
-
     [HttpDelete("{id}")]
     public IActionResult DeleteRecipe(Guid id)
     {

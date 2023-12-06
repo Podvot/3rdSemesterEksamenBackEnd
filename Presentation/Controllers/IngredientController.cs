@@ -45,14 +45,11 @@ public class IngredientController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateIngredient([FromBody] Ingredient ingredient)
+    public IActionResult CreateIngredientItem([FromBody] CreateIngredientDTO createIngredientDto)
     {
-        Ingredient newIngredient;
-
-            newIngredient = _ingredientService.CreateIngredient(ingredient);
-        
-       
-        _logger.Log(LogLevel.Information, "CreateIngredient called, returning new ingredient");
+        var ingredient = new Ingredient();
+        _mapper.Map(createIngredientDto, ingredient);
+        var newIngredient = _ingredientService.CreateIngredient(ingredient);
         return CreatedAtAction(nameof(GetIngredient), new { id = newIngredient.Id }, newIngredient);
     }
 

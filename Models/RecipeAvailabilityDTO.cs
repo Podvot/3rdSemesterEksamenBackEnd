@@ -1,6 +1,6 @@
 namespace Models;
 
-public class RecipeAvailabilityDto
+public class RecipeAvailabilityDTO
 {
     public bool Available { get; set; }
 }
