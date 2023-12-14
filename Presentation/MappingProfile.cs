@@ -13,7 +13,9 @@ public class MappingProfile : Profile
         CreateMap<MenuItem, CreateMenuItemDTO>();
         CreateMap<IngredientAvailabilityDto, Ingredient>();
         CreateMap<Ingredient, IngredientAvailabilityDto>();
-        CreateMap<CreateIngredientDTO, Ingredient>();
-        CreateMap<Ingredient, CreateIngredientDTO>();
+        CreateMap<Ingredient, IngredientAvailabilityDto>();
+        CreateMap<IngredientAvailabilityDto, Ingredient>();
+        CreateMap<CreateMenuItemDTO, MenuRecipe>();
+        CreateMap<MenuRecipe, CreateMenuItemDTO>();
     }
 }

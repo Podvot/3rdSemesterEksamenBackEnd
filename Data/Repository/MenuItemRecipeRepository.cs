@@ -15,37 +15,20 @@ public class MenuItemRecipeRepository : IMenuItemRecipeRepository
 
     public void AddRecipe(Guid menuItemId, Recipe recipe)
     {
-        var menuItem = _context.MenuItems.FirstOrDefault(r => (r.Id == menuItemId));
-    
-        if (menuItem == null)
-        {
-            menuItem = new MenuItem
-            {
-                Id = menuItemId
-            };
-            _context.MenuItems.Add(menuItem);
-        }
-    
-        menuItem.Recipes.Add(recipe);
+        var menuItem = GetMenuItem(menuItemId);
+        menuItem.AttachRecipe.Add(recipe);
         _context.SaveChanges();
-    }
-
-    public IList<MenuItem> GetMenuItems()
-    {
-        return _context.MenuItems
-            .Include(x => x.Recipes)
-            .ToList();
     }
 
     public MenuItem GetMenuItem(Guid id)
     {
         return _context
                    .MenuItems
-                   .Include(x => x.Recipes)
+                   .Include(x => x.AttachRecipe)
                    .FirstOrDefault(x => x.Id == id) 
                ?? throw new InvalidOperationException();    
     }
-    public bool MenuItemRecipeExists(Guid id)
+    public bool MenuItemExists(Guid id)
     {
         return _context.MenuItems.Any(x => x.Id == id);
     }    

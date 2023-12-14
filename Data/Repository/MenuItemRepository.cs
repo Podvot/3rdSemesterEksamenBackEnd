@@ -15,7 +15,7 @@ public class MenuItemRepository : IMenuItemRepository
     public IList<MenuItem> GetMenuItems()
     {
         return _context.MenuItems
-            .Include(x => x.Recipes)
+            .Include(x => x.AttachRecipe)
             .ToList();
     }
 

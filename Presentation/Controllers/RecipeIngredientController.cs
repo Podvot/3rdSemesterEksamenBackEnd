@@ -19,14 +19,17 @@ public class RecipeIngredientController : Controller
     }
     
     [HttpPut("{recipeId}/AddIngredient")]
-    public IActionResult AddIngredient(Guid recipeId, [FromBody] Guid ingredient)
+    public IActionResult AddIngredient(Guid recipeId, [FromBody] Ingredient ingredient)
     {
         if (!_recipeIngredientsService.RecipeExists(recipeId))
         {
             return NotFound();
         }
+        else
+        {
+            _recipeIngredientsService.AddIngredient(recipeId, ingredient);
+        }
 
-        _recipeIngredientsService.AddIngredient(recipeId, ingredient);
         return Ok();
     }
     

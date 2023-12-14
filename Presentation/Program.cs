@@ -23,11 +23,15 @@ public class Program
         builder.Services.AddScoped<IIngredientService, IngredientService>();
         builder.Services.AddScoped<IRecipeService, RecipeService>();
         builder.Services.AddScoped<IMenuItemService, MenuItemService>();
+        builder.Services.AddScoped<IMenuItemRecipeService, MenuItemRecipeService>();
+        builder.Services.AddScoped<IRecipeIngredientsService, RecipeIngredientsService>();
 
         //Repositories
         builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
         builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
         builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+        builder.Services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
+        builder.Services.AddScoped<IMenuItemRecipeRepository, MenuItemRecipeRepository>();
         builder.Services.AddControllers();
         
         // Adding and using Swagger/OpenAPI to run the program
@@ -42,7 +46,7 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
+        
         app.UseCors(x => x
             .AllowAnyOrigin()
             .AllowAnyHeader()

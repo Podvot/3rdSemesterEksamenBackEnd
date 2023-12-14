@@ -16,6 +16,7 @@ public class RecipeRepository : IRecipeRepository
     { 
         return _context
             .Recipes
+            .Include(x => x.AddedIngredients)
             .ToList();
     }
     

@@ -6,8 +6,11 @@ namespace Models;
 public class Ingredient
 {
     [Column(TypeName = "uniqueidentifier")]
-    [Key]
     public Guid Id { get; set; }
     public string Name { get; set; }
     public bool Available { get; set; }
+    
+    public Guid RecipeId { get; set; }
+    
+    public Guid MenuItemId { get; set; }
 }

@@ -5,9 +5,8 @@ namespace Data.Repository;
 public interface IRecipeIngredientRepository
 {
     
-    void AddIngredient(Guid recipeId, Guid ingredient);
-    IList<Recipe> GetRecipes();
+    void AddIngredient(Guid recipeId, Ingredient ingredient);
     Recipe GetRecipe(Guid id);
-    bool RecipeIngredientExists(Guid id);
+    bool RecipeExists(Guid id);
     
 }

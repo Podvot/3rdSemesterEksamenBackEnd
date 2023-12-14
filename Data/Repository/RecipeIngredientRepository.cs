@@ -13,31 +13,13 @@ public class RecipeIngredientRepository : IRecipeIngredientRepository
         _context = context;
     }
     
-    public void AddIngredient(Guid recipeId, Guid ingredient)
+    public void AddIngredient(Guid recipeId, Ingredient ingredient)
     {
-        var recipe = _context.Recipes.FirstOrDefault(r => (r.Id == recipeId));
-    
-        if (recipe == null)
-        {
-            recipe = new Recipe
-            {
-                Id = recipeId
-            };
-            _context.Recipes.Add(recipe);
-        }
-    
-        recipe.Ingredients.Add(ingredient);
+        var recipe = GetRecipe(recipeId);
+        recipe.AddedIngredients.Add(ingredient);
         _context.SaveChanges();
     }
-
-    public IList<Recipe> GetRecipes()
-    {
-        return _context
-            .Recipes
-            .Include(x => x.Ingredients)
-            .ToList();
-    }
-
+    
     public Recipe GetRecipe(Guid id)
     {
         return _context
@@ -46,7 +28,7 @@ public class RecipeIngredientRepository : IRecipeIngredientRepository
                ?? throw new InvalidOperationException();    
     }
     
-    public bool RecipeIngredientExists(Guid id)
+    public bool RecipeExists(Guid id)
     {
         return _context.Recipes.Any(x => x.Id == id);
     }

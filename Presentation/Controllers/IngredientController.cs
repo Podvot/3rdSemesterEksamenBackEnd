@@ -45,13 +45,23 @@ public class IngredientController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateIngredientItem([FromBody] CreateIngredientDTO createIngredientDto)
+    public IActionResult CreateIngredient([FromBody] Ingredient ingredient)
     {
-        var ingredient = new Ingredient();
-        _mapper.Map(createIngredientDto, ingredient);
-        var newIngredient = _ingredientService.CreateIngredient(ingredient);
-        return CreatedAtAction(nameof(GetIngredient), new { id = newIngredient.Id }, newIngredient);
-    }
+        Ingredient newIngredient;
+
+        try
+        {
+            newIngredient = _ingredientService.CreateIngredient(ingredient);
+        }
+        catch (Exception e)
+        {
+            var message = "CreateIngredient called, but an exception was thrown";
+            _logger.Log(LogLevel.Error, message + ": {0}", e.Message);
+            return StatusCode(500, message);
+        }
+       
+        _logger.Log(LogLevel.Information, "CreateIngredient called, returning new ingredient");
+        return CreatedAtAction(nameof(GetIngredient), new { id = newIngredient.Id }, newIngredient);    }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteIngredient(Guid id)

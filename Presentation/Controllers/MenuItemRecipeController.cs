@@ -21,12 +21,15 @@ public class MenuItemRecipeController : Controller
     [HttpPut("{menuItemId}/AddRecipe")]
     public IActionResult AddRecipe(Guid menuItemId, [FromBody] Recipe recipe)
     {
-        if (!_menuItemRecipeService.MenuItemRecipeExists(menuItemId))
+        if (!_menuItemRecipeService.MenuItemExists(menuItemId))
         {
             return NotFound();
         }
+        else
+        {
+            _menuItemRecipeService.AddRecipe(menuItemId, recipe);
+        }
 
-        _menuItemRecipeService.AddRecipe(menuItemId, recipe);
         return Ok();
     }
     

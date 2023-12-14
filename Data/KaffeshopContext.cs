@@ -10,12 +10,14 @@ namespace Data
     {
         public KaffeshopContext(DbContextOptions<KaffeshopContext> options) : base(options)
         {
+            
         }
 
-        public DbSet<Ingredient> Ingredients { get; set; } = null!;
-        public DbSet<MenuItem> MenuItems { get; set; } = null!;
-        public DbSet<Recipe> Recipes { get; set; } = null!;
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<Recipe> Recipes { get; set; }
 
-    
+       
+        
     }
 }

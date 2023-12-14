@@ -7,14 +7,9 @@ public class RecipeIngredientsService : IRecipeIngredientsService
 {
     private IRecipeIngredientRepository _recipeIngredientRepository;
     
-    public void AddIngredient(Guid recipeId, Guid ingredient)
+    public void AddIngredient(Guid recipeId, Ingredient ingredient)
     { 
         _recipeIngredientRepository.AddIngredient(recipeId, ingredient);
-    }
-
-    public IList<Recipe> GetRecipes()
-    {
-        return _recipeIngredientRepository.GetRecipes();
     }
 
     public Recipe GetRecipe(Guid id)
@@ -24,7 +19,7 @@ public class RecipeIngredientsService : IRecipeIngredientsService
     
     public bool RecipeExists(Guid id)
     {
-        return _recipeIngredientRepository.RecipeIngredientExists(id);
+        return _recipeIngredientRepository.RecipeExists(id);
     }
     
 }
