@@ -1,6 +1,6 @@
 namespace Models;
 
-public class RecipeSeasonalDto
+public class RecipeSeasonalDTO
 {
     public bool Seasonal { get; set; }
 }
