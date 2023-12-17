@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Business.Service;
+using Business.Service.MenuItemService;
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using Models.Recipes;
 
 namespace Presentation.Controllers;
 
@@ -21,7 +21,7 @@ public class MenuItemRecipeController : Controller
     [HttpPut("{menuItemId}/AddRecipe")]
     public IActionResult AddRecipe(Guid menuItemId, [FromBody] Recipe recipe)
     {
-        if (!_menuItemRecipeService.MenuItemExists(menuItemId))
+        if (!_menuItemRecipeService.MenuRecipeExists(menuItemId))
         {
             return NotFound();
         }

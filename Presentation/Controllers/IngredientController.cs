@@ -1,8 +1,8 @@
 using AutoMapper;
-using Business.Service;
+using Business.Service.IngredientService;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using Models.Ingredients;
 
 namespace Presentation.Controllers;
 

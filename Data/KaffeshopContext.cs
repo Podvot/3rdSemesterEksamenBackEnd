@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using Models;
+using Models.Ingredients;
+using Models.Recipes;
+using Models.MenuItems;
 
 namespace Data
 {
@@ -14,9 +16,10 @@ namespace Data
         }
 
         public DbSet<Ingredient> Ingredients { get; set; }
-        public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
-
+        public DbSet<RecipeIngredients> RecipeIngredients { get; set; }
+        public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<MenuRecipe> MenuRecipes { get; set; }
        
         
     }

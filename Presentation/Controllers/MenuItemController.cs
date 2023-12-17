@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Business.Service;
+using Business.Service.MenuItemService;
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using Models.MenuItems;
 
 namespace Presentation.Controllers;
 
@@ -38,10 +38,10 @@ public class MenuItemController : Controller
     }
 
     [HttpPost]
-    public IActionResult CreateMenuItem([FromBody] CreateMenuItemDTO createMenuItemDto)
+    public IActionResult CreateMenuItem([FromBody] MenuItem createMenuItem)
     {
         var menuItem = new MenuItem();
-        _mapper.Map(createMenuItemDto, menuItem);
+        _mapper.Map(createMenuItem, menuItem);
         var newMenuItem = _menuItemService.CreateMenuItem(menuItem);
         return CreatedAtAction(nameof(GetMenuItem), new { id = newMenuItem.Id }, newMenuItem);
     }

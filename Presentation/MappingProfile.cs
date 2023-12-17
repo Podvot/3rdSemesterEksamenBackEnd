@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using Models;
+using Models.Ingredients;
+using Models.Recipes;
+
 
 namespace Presentation;
 
@@ -7,15 +9,11 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<CreateRecipeDTO, Recipe>();
-        CreateMap<Recipe, CreateRecipeDTO>();
-        CreateMap<CreateMenuItemDTO, MenuItem>();
-        CreateMap<MenuItem, CreateMenuItemDTO>();
+        CreateMap<CreateRecipeIngredientDto, RecipeIngredients>();
+        CreateMap<RecipeIngredients, CreateRecipeIngredientDto>();
         CreateMap<IngredientAvailabilityDto, Ingredient>();
         CreateMap<Ingredient, IngredientAvailabilityDto>();
         CreateMap<Ingredient, IngredientAvailabilityDto>();
         CreateMap<IngredientAvailabilityDto, Ingredient>();
-        CreateMap<CreateMenuItemDTO, MenuRecipe>();
-        CreateMap<MenuRecipe, CreateMenuItemDTO>();
     }
 }

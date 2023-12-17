@@ -1,7 +1,8 @@
 using AutoMapper;
 using Business.Service;
+using Business.Service.RecipeService;
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using Models.Recipes;
 
 namespace Presentation.Controllers;
 
@@ -17,15 +18,15 @@ public class RecipeController : Controller
         _recipeService = recipeService;
         _mapper = mapper;
     }
-
+    
     [HttpGet]
     [Route("GetRecipes")]
     public IActionResult GetRecipes()
     {
-        var recipes = _recipeService.GetRecipes();
-        return Ok(recipes);
+        var recipe = _recipeService.GetRecipes();
+        return Ok(recipe);
     }
-
+    
     [HttpGet("{id}")]
     public IActionResult GetRecipe(Guid id)
     {
@@ -37,12 +38,12 @@ public class RecipeController : Controller
 
         return Ok(recipe);
     }
-
+    
     [HttpPost]
-    public IActionResult CreateRecipe([FromBody] CreateRecipeDTO createRecipeDto)
+    public IActionResult CreateRecipe([FromBody] Recipe createRecipe)
     {
         var recipe = new Recipe();
-        _mapper.Map(createRecipeDto, recipe);
+        _mapper.Map(createRecipe, recipe);
         var newRecipe = _recipeService.CreateRecipe(recipe);
         return CreatedAtAction(nameof(GetRecipe), new { id = newRecipe.Id }, newRecipe);
     }
@@ -58,4 +59,5 @@ public class RecipeController : Controller
         _recipeService.DeleteRecipe(id);
         return NoContent();
     }
+    
 }
