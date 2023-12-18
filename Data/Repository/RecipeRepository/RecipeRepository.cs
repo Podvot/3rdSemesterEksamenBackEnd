@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Models;
 using Models.Recipes;
 
 namespace Data.Repository.RecipeRepository;

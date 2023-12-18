@@ -1,4 +1,4 @@
-﻿namespace Models.Recipes;
+namespace Models.Recipes;
 
 public class CreateRecipeIngredientDto
 {

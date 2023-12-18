@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Models.MenuItems;
 using Models.Recipes;
 
-namespace Data.Repository.MenuItem;
+namespace Data.Repository.MenuItemRepository;
 
 public class MenuItemRecipeRepository : IMenuItemRecipeRepository
 {

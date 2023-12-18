@@ -22,7 +22,7 @@ namespace Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Models.Ingredient", b =>
+            modelBuilder.Entity("Models.Ingredient.Ingredient", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,24 +31,24 @@ namespace Data.Migrations
                     b.Property<bool>("Available")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("MenuItemId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RecipeId")
+                    b.Property<Guid>("RecipeIngredientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("RecipeIngredientsId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("RecipeIngredientsId");
 
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("Models.MenuItem", b =>
+            modelBuilder.Entity("Models.MenuItem.MenuItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,22 @@ namespace Data.Migrations
                     b.ToTable("MenuItems");
                 });
 
-            modelBuilder.Entity("Models.Recipe", b =>
+            modelBuilder.Entity("Models.MenuItem.MenuRecipe", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuRecipes");
+                });
+
+            modelBuilder.Entity("Models.Recipe.Recipe", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +90,7 @@ namespace Data.Migrations
                     b.Property<bool>("Available")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("MenuItemId")
+                    b.Property<Guid?>("MenuRecipeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -87,33 +102,52 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuItemId");
+                    b.HasIndex("MenuRecipeId");
 
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("Models.Ingredient", b =>
+            modelBuilder.Entity("Models.Recipe.RecipeIngredients", b =>
                 {
-                    b.HasOne("Models.Recipe", null)
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Available")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Seasonal")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RecipeIngredients");
+                });
+
+            modelBuilder.Entity("Models.Ingredient.Ingredient", b =>
+                {
+                    b.HasOne("Models.Recipe.RecipeIngredients", null)
                         .WithMany("AddedIngredients")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RecipeIngredientsId");
                 });
 
-            modelBuilder.Entity("Models.Recipe", b =>
+            modelBuilder.Entity("Models.Recipe.Recipe", b =>
                 {
-                    b.HasOne("Models.MenuItem", null)
+                    b.HasOne("Models.MenuItem.MenuRecipe", null)
                         .WithMany("AttachRecipe")
-                        .HasForeignKey("MenuItemId");
+                        .HasForeignKey("MenuRecipeId");
                 });
 
-            modelBuilder.Entity("Models.MenuItem", b =>
+            modelBuilder.Entity("Models.MenuItem.MenuRecipe", b =>
                 {
                     b.Navigation("AttachRecipe");
                 });
 
-            modelBuilder.Entity("Models.Recipe", b =>
+            modelBuilder.Entity("Models.Recipe.RecipeIngredients", b =>
                 {
                     b.Navigation("AddedIngredients");
                 });

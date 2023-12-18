@@ -1,4 +1,4 @@
-using Data.Repository.MenuItem;
+using Data.Repository.MenuItemRepository;
 using Models.MenuItems;
 using Models.Recipes;
 

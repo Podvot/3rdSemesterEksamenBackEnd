@@ -1,13 +1,13 @@
 using Models.MenuItems;
 using Models.Recipes;
 
-namespace Data.Repository.MenuItem;
+namespace Data.Repository.MenuItemRepository;
 
 public interface IMenuItemRecipeRepository
 {
     void AddRecipe(Guid menuRecipeId, Recipe recipe);
-    IList<Models.MenuItems.MenuRecipe> GetMenuRecipes();
-    Models.MenuItems.MenuRecipe GetMenuRecipe(Guid id);
+    IList<MenuRecipe> GetMenuRecipes();
+    MenuRecipe GetMenuRecipe(Guid id);
     bool MenuRecipeExists(Guid id);
 
 }

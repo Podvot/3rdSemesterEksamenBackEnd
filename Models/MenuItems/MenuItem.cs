@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Models.MenuItems;
 
-
 public class MenuItem
 { 
         [Column(TypeName = "uniqueidentifier")]

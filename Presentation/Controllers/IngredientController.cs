@@ -87,7 +87,7 @@ public class IngredientController : ControllerBase
     }
     
     [HttpPut("availability/{id}")]
-    public IActionResult UpdateAvailability(Guid id, [FromBody] IngredientAvailabilityDto ingredientAvailabilityDto)
+    public IActionResult UpdateAvailability(Guid id, [FromBody] IngredientAvailabilityDTO ingredientAvailabilityDto)
     {
         var ingredient = _ingredientService.GetIngredient(id);
         _logger.Log(LogLevel.Information, ingredientAvailabilityDto.Available.ToString());

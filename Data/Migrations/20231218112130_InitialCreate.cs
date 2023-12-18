@@ -25,6 +25,32 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MenuRecipes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MenuRecipes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecipeIngredients",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Seasonal = table.Column<bool>(type: "bit", nullable: false),
+                    Available = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeIngredients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Recipes",
                 columns: table => new
                 {
@@ -32,15 +58,15 @@ namespace Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Seasonal = table.Column<bool>(type: "bit", nullable: false),
                     Available = table.Column<bool>(type: "bit", nullable: false),
-                    MenuItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    MenuRecipeId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recipes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Recipes_MenuItems_MenuItemId",
-                        column: x => x.MenuItemId,
-                        principalTable: "MenuItems",
+                        name: "FK_Recipes_MenuRecipes_MenuRecipeId",
+                        column: x => x.MenuRecipeId,
+                        principalTable: "MenuRecipes",
                         principalColumn: "Id");
                 });
 
@@ -51,29 +77,28 @@ namespace Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Available = table.Column<bool>(type: "bit", nullable: false),
-                    RecipeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MenuItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    RecipeIngredientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RecipeIngredientsId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ingredients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ingredients_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Ingredients_RecipeIngredients_RecipeIngredientsId",
+                        column: x => x.RecipeIngredientsId,
+                        principalTable: "RecipeIngredients",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_RecipeId",
+                name: "IX_Ingredients_RecipeIngredientsId",
                 table: "Ingredients",
-                column: "RecipeId");
+                column: "RecipeIngredientsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recipes_MenuItemId",
+                name: "IX_Recipes_MenuRecipeId",
                 table: "Recipes",
-                column: "MenuItemId");
+                column: "MenuRecipeId");
         }
 
         /// <inheritdoc />
@@ -83,10 +108,16 @@ namespace Data.Migrations
                 name: "Ingredients");
 
             migrationBuilder.DropTable(
+                name: "MenuItems");
+
+            migrationBuilder.DropTable(
                 name: "Recipes");
 
             migrationBuilder.DropTable(
-                name: "MenuItems");
+                name: "RecipeIngredients");
+
+            migrationBuilder.DropTable(
+                name: "MenuRecipes");
         }
     }
 }

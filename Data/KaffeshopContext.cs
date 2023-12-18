@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Models.Ingredients;
-using Models.Recipes;
 using Models.MenuItems;
+using Models.Recipes;
 
 namespace Data
 {
@@ -20,7 +20,7 @@ namespace Data
         public DbSet<RecipeIngredients> RecipeIngredients { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<MenuRecipe> MenuRecipes { get; set; }
-       
-        
+
+
     }
 }

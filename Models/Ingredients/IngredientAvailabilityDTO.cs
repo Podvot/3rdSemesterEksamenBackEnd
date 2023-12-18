@@ -1,6 +1,6 @@
 ﻿namespace Models.Ingredients;
 
-public class IngredientAvailabilityDto
+public class IngredientAvailabilityDTO
 {
     public bool Available { get; set; }
 }

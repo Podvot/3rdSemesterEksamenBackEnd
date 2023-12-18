@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Models.Ingredients;
@@ -16,6 +15,6 @@ public class RecipeIngredients
     
         public bool Available { get; set; }
     
-        public IList<Ingredient> AddedIngredients { get; set; } = new List<Ingredient>();
+        public List<Ingredient> AddedIngredients { get; set; } = new List<Ingredient>();
 
 }

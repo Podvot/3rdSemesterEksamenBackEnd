@@ -1,5 +1,4 @@
-﻿using Models;
-using Models.Ingredients;
+﻿using Models.Ingredients;
 
 namespace Data.Repository.IngredientRepository;
 

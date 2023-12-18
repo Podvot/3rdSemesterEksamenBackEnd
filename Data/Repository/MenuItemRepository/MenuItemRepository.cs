@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.MenuItems;
 
-namespace Data.Repository.MenuItem;
+namespace Data.Repository.MenuItemRepository;
 
 public class MenuItemRepository : IMenuItemRepository
 {
@@ -12,13 +12,13 @@ public class MenuItemRepository : IMenuItemRepository
         _context = context;
     }
     
-    public IList<Models.MenuItems.MenuItem> GetMenuItems()
+    public IList<MenuItem> GetMenuItems()
     {
         return _context.MenuItems
             .ToList();
     }
 
-    public Models.MenuItems.MenuItem GetMenuItem(Guid id)
+    public MenuItem GetMenuItem(Guid id)
     {
         return _context
                    .MenuItems
@@ -26,7 +26,7 @@ public class MenuItemRepository : IMenuItemRepository
                ?? throw new InvalidOperationException();
     }
 
-    public Models.MenuItems.MenuItem CreateMenuItem(Models.MenuItems.MenuItem menuItem)
+    public MenuItem CreateMenuItem(MenuItem menuItem)
     {
         _context.MenuItems.Add(menuItem);
         _context.SaveChanges();
@@ -38,7 +38,7 @@ public class MenuItemRepository : IMenuItemRepository
         return _context.MenuItems.Any(x => x.Id == id);
     }
 
-    public Models.MenuItems.MenuItem UpdateMenuItem(Guid id, Models.MenuItems.MenuItem menuItem)
+    public MenuItem UpdateMenuItem(Guid id, MenuItem menuItem)
     {
         var menuItemToUpdate = GetMenuItem(id);
         menuItemToUpdate.Name = menuItemToUpdate.Name;
