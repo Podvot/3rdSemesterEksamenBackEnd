@@ -12,8 +12,7 @@ public class RecipeIngredientController : Controller
 {
     private readonly IRecipeIngredientsService _recipeIngredientsService;
     private readonly IMapper _mapper;
-
-    public RecipeIngredientController(IRecipeIngredientsService recipeIngredientsService, IMapper mapper)
+public RecipeIngredientController(IRecipeIngredientsService recipeIngredientsService, IMapper mapper)
     {
         _recipeIngredientsService = recipeIngredientsService;
         _mapper = mapper;
@@ -23,6 +22,7 @@ public class RecipeIngredientController : Controller
     [Route("GetRecipeIngredients")]
     public IActionResult GetRecipeIngredients()
     { 
+        
         var recipeIngredients = _recipeIngredientsService.GetRecipeIngredients(); 
         return Ok(recipeIngredients);
     }
@@ -40,10 +40,10 @@ public class RecipeIngredientController : Controller
     }
     
     [HttpPost]
-    public IActionResult CreateRecipeIngredient([FromBody] CreateRecipeIngredientDto createRecipeIngredient)
+    public IActionResult CreateRecipeIngredient([FromBody] CreateRecipeIngredientDto createRecipeIngredientDto)
     {
         var recipeIngredient = new RecipeIngredients();
-        _mapper.Map(createRecipeIngredient, recipeIngredient);
+        _mapper.Map(createRecipeIngredientDto, recipeIngredient);
         var newRecipeIngredient = _recipeIngredientsService.CreateRecipeIngredient(recipeIngredient);
         return CreatedAtAction(nameof(GetRecipeIngredient), new { id = newRecipeIngredient.Id }, newRecipeIngredient);
     }
@@ -74,5 +74,6 @@ public class RecipeIngredientController : Controller
         _recipeIngredientsService.DeleteRecipeIngredient(id);
         return NoContent();
     }
+    
     
 }

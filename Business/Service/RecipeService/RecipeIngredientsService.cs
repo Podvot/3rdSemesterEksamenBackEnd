@@ -16,26 +16,26 @@ public class RecipeIngredientsService : IRecipeIngredientsService
     public void AddIngredient(Guid recipeIngredientId, Ingredient ingredient)
     { 
         _recipeIngredientRepository.AddIngredient(recipeIngredientId, ingredient);
-    }
 
-    public RecipeIngredients GetRecipeIngredient(Guid id)
-    {
-                return _recipeIngredientRepository.GetRecipeIngredient(id);
     }
     
+    public RecipeIngredients? GetRecipeIngredient(Guid id)
+    {
+        return _recipeIngredientRepository.GetRecipeIngredient(id);
+    }
+
     public RecipeIngredients CreateRecipeIngredient(RecipeIngredients recipeIngredients)
     {
         return _recipeIngredientRepository.CreateRecipeIngredient(recipeIngredients);
     }
-    
+
     public bool RecipeIngredientExists(Guid id)
     {
         return _recipeIngredientRepository.RecipeIngredientExists(id);
     }
-    
+
     public void DeleteRecipeIngredient(Guid id)
     {
         _recipeIngredientRepository.DeleteRecipeIngredient(id);
     }
-    
 }

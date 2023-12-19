@@ -15,6 +15,6 @@ public class RecipeIngredients
     
         public bool Available { get; set; }
     
-        public List<Ingredient> AddedIngredients { get; set; } = new List<Ingredient>();
+        public List<Ingredient>? AddedIngredients { get; set; } = new List<Ingredient>();
 
 }

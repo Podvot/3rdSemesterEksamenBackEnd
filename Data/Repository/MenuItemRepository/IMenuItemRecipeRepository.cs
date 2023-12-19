@@ -5,9 +5,11 @@ namespace Data.Repository.MenuItemRepository;
 
 public interface IMenuItemRecipeRepository
 {
-    void AddRecipe(Guid menuRecipeId, Recipe recipe);
-    IList<MenuRecipe> GetMenuRecipes();
+    void AddRecipe(Guid menuItemId, Recipe recipe);
     MenuRecipe GetMenuRecipe(Guid id);
+    MenuRecipe CreateMenuRecipe(MenuRecipe menuRecipe);
+    IList<MenuRecipe> GetMenuRecipes();
     bool MenuRecipeExists(Guid id);
+    void DeleteMenuRecipe(Guid id);
 
 }

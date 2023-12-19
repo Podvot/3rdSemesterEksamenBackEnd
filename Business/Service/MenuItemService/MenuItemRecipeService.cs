@@ -14,17 +14,28 @@ public class MenuItemRecipeService :IMenuItemRecipeService
         return _menuItemRecipeRepository.GetMenuRecipes();
     }
     
-    public void AddRecipe(Guid menuRecipeId, Recipe recipe)
-    {
-        _menuItemRecipeRepository.AddRecipe(menuRecipeId, recipe);
+    public void AddRecipe(Guid menuItemId, Recipe recipe)
+    { 
+        _menuItemRecipeRepository.AddRecipe(menuItemId, recipe);
     }
 
-    public MenuRecipe? GetMenuRecipe(Guid id)
+    public MenuRecipe GetMenuRecipe(Guid id)
     {
         return _menuItemRecipeRepository.GetMenuRecipe(id);
     }
+    
+    public MenuRecipe CreateMenuRecipe(MenuRecipe menuRecipe)
+    {
+        return _menuItemRecipeRepository.CreateMenuRecipe(menuRecipe);
+    }
+
     public bool MenuRecipeExists(Guid id)
     {
         return _menuItemRecipeRepository.MenuRecipeExists(id);
-    }   
+    }
+    
+    public void DeleteMenuRecipe(Guid id)
+    {
+        _menuItemRecipeRepository.DeleteMenuRecipe(id);
+    }
 }

@@ -13,6 +13,6 @@ public class MenuRecipe
 
     public string Name { get; set; }
 
-    public IList<Recipe> AttachRecipe { get; set; }
+    public IList<Recipe>? AttachRecipe { get; set; }
 
 }

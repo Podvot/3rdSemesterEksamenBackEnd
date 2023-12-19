@@ -6,8 +6,9 @@ namespace Business.Service.MenuItemService;
 public interface IMenuItemRecipeService
 {
     void AddRecipe(Guid menuItemId, Recipe recipe);
-    bool MenuRecipeExists(Guid id);
-    MenuRecipe? GetMenuRecipe(Guid id);
     IList<MenuRecipe> GetMenuRecipes();
-
+    MenuRecipe CreateMenuRecipe(MenuRecipe menuRecipe);
+    MenuRecipe GetMenuRecipe(Guid id);  
+    bool MenuRecipeExists(Guid id);
+    void DeleteMenuRecipe(Guid id);
 }

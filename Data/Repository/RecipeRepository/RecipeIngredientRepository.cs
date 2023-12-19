@@ -20,20 +20,12 @@ public class RecipeIngredientRepository : IRecipeIngredientRepository
         recipeIngredient.AddedIngredients.Add(ingredient);
         _context.SaveChanges();
     }
-
+    
     public IList<RecipeIngredients> GetRecipeIngredients()
     { 
         return _context.RecipeIngredients
             .Include(x => x.AddedIngredients)
             .ToList();
-    }
-    
-    public RecipeIngredients GetRecipeIngredient(Guid id)
-    {
-        return _context
-                   .RecipeIngredients
-                   .FirstOrDefault(x => x.Id == id) 
-               ?? throw new InvalidOperationException();    
     }
     
     public RecipeIngredients CreateRecipeIngredient(RecipeIngredients recipeIngredients)
@@ -42,10 +34,10 @@ public class RecipeIngredientRepository : IRecipeIngredientRepository
         _context.SaveChanges();
         return recipeIngredients;
     }
-    
+
     public bool RecipeIngredientExists(Guid id)
     {
-        return _context.Recipes.Any(x => x.Id == id);
+        return _context.RecipeIngredients.Any(x => x.Id == id);
     }
     
     public void DeleteRecipeIngredient(Guid id)
@@ -54,6 +46,14 @@ public class RecipeIngredientRepository : IRecipeIngredientRepository
         
         _context.RecipeIngredients.Remove(recipeIngredient);
         _context.SaveChanges();
+    }
+    
+    public RecipeIngredients GetRecipeIngredient(Guid id)
+    {
+        return _context
+                   .RecipeIngredients
+                   .FirstOrDefault(x => x.Id == id) 
+               ?? throw new InvalidOperationException();
     }
     
 }

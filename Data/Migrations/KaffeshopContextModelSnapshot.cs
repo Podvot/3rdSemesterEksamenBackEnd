@@ -22,7 +22,7 @@ namespace Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Models.Ingredient.Ingredient", b =>
+            modelBuilder.Entity("Models.Ingredients.Ingredient", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace Data.Migrations
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("Models.MenuItem.MenuItem", b =>
+            modelBuilder.Entity("Models.MenuItems.MenuItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace Data.Migrations
                     b.ToTable("MenuItems");
                 });
 
-            modelBuilder.Entity("Models.MenuItem.MenuRecipe", b =>
+            modelBuilder.Entity("Models.MenuItems.MenuRecipe", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,7 +81,7 @@ namespace Data.Migrations
                     b.ToTable("MenuRecipes");
                 });
 
-            modelBuilder.Entity("Models.Recipe.Recipe", b =>
+            modelBuilder.Entity("Models.Recipes.Recipe", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,7 +107,7 @@ namespace Data.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("Models.Recipe.RecipeIngredients", b =>
+            modelBuilder.Entity("Models.Recipes.RecipeIngredients", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,26 +128,26 @@ namespace Data.Migrations
                     b.ToTable("RecipeIngredients");
                 });
 
-            modelBuilder.Entity("Models.Ingredient.Ingredient", b =>
+            modelBuilder.Entity("Models.Ingredients.Ingredient", b =>
                 {
-                    b.HasOne("Models.Recipe.RecipeIngredients", null)
+                    b.HasOne("Models.Recipes.RecipeIngredients", null)
                         .WithMany("AddedIngredients")
                         .HasForeignKey("RecipeIngredientsId");
                 });
 
-            modelBuilder.Entity("Models.Recipe.Recipe", b =>
+            modelBuilder.Entity("Models.Recipes.Recipe", b =>
                 {
-                    b.HasOne("Models.MenuItem.MenuRecipe", null)
+                    b.HasOne("Models.MenuItems.MenuRecipe", null)
                         .WithMany("AttachRecipe")
                         .HasForeignKey("MenuRecipeId");
                 });
 
-            modelBuilder.Entity("Models.MenuItem.MenuRecipe", b =>
+            modelBuilder.Entity("Models.MenuItems.MenuRecipe", b =>
                 {
                     b.Navigation("AttachRecipe");
                 });
 
-            modelBuilder.Entity("Models.Recipe.RecipeIngredients", b =>
+            modelBuilder.Entity("Models.Recipes.RecipeIngredients", b =>
                 {
                     b.Navigation("AddedIngredients");
                 });
