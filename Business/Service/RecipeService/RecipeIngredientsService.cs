@@ -8,6 +8,11 @@ public class RecipeIngredientsService : IRecipeIngredientsService
 {
     private IRecipeIngredientRepository _recipeIngredientRepository;
     
+    public RecipeIngredientsService(IRecipeIngredientRepository recipeIngredientRepository)
+    {
+        _recipeIngredientRepository = recipeIngredientRepository;
+    }
+    
     public IList<RecipeIngredients> GetRecipeIngredients()
     {
         return _recipeIngredientRepository.GetRecipeIngredients();

@@ -8,6 +8,11 @@ public class MenuItemRecipeRepository : IMenuItemRecipeRepository
 {
     
     private readonly KaffeshopContext _context;
+
+    public MenuItemRecipeRepository(KaffeshopContext context)
+    {
+        _context = context;
+    }
     
     public void AddRecipe(Guid menuItemId, Recipe recipe)
     {

@@ -9,6 +9,12 @@ public class MenuItemRecipeService :IMenuItemRecipeService
 
     private IMenuItemRecipeRepository _menuItemRecipeRepository;
 
+    public MenuItemRecipeService(IMenuItemRecipeRepository menuRecipeRepository)
+    {
+        _menuItemRecipeRepository = menuRecipeRepository;
+    }
+
+    
     public IList<MenuRecipe> GetMenuRecipes()
     {
         return _menuItemRecipeRepository.GetMenuRecipes();
